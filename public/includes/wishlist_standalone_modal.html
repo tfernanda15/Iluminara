@@ -1,0 +1,89 @@
+<!-- public/includes/wishlist_standalone_modal.html -->
+
+<!-- Modal principal de Wishlist (Nuevo y Standalone) -->
+<div id="standaloneWishlistModal" class="modal">
+    <div class="modal-content large-modal-content">
+        <span class="close-button" id="closeStandaloneWishlistModalBtn">&times;</span>
+        <div class="modal-body">
+            <h2>Mi Wishlist Mágica</h2>
+
+            <!-- Sección de Tableros de Wishlist -->
+            <div id="standaloneWishlistBoardsSection" class="wishlist-boards-section">
+                <h3>Mis Tableros</h3>
+                <div id="standaloneWishlistBoardsContainer" class="board-grid">
+                    <!-- Los tableros se cargarán aquí dinámicamente con JavaScript -->
+                    <p class="placeholder-text">Cargando tableros de wishlist...</p>
+                </div>
+                <button id="standaloneCreateBoardBtn" class="btn btn-primary create-board-btn">&#x2795; Crear Nuevo Tablero</button>
+            </div>
+
+            <!-- Sección de Ítems de un Tablero Específico -->
+            <div id="standaloneWishlistItemsSection" class="wishlist-items-section" style="display: none;">
+                <h3 id="standaloneCurrentBoardName"></h3>
+                <button id="standaloneBackToBoardsBtn" class="btn btn-secondary back-btn">&larr; Volver a Tableros</button>
+                <div id="standaloneCurrentBoardItems" class="product-grid">
+                    <!-- Los ítems del tablero actual se cargarán aquí -->
+                    <p class="placeholder-text">Selecciona un tablero para ver sus ítems.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Crear Nuevo Tablero (dentro del flujo del standalone wishlist) -->
+<div id="standaloneCreateBoardModal" class="modal">
+    <div class="modal-content small-modal-content">
+        <span class="close-button" id="closeStandaloneCreateBoardModalBtn">&times;</span>
+        <div class="modal-body">
+            <h2>Crear Nuevo Tablero</h2>
+            <form id="standaloneCreateBoardForm">
+                <label for="standaloneNewBoardName">Nombre del Tablero:</label>
+                <input type="text" id="standaloneNewBoardName" name="boardName" required maxlength="255">
+                <label for="standaloneNewBoardDescription">Descripción (Opcional):</label>
+                <textarea id="standaloneNewBoardDescription" name="boardDescription" rows="3" maxlength="500"></textarea>
+                <div class="modal-actions">
+                    <button type="button" id="cancelStandaloneCreateBoardBtn" class="btn btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Crear Tablero</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Añadir Producto a Wishlist (dentro del flujo del standalone wishlist) -->
+<div id="standaloneAddProductToWishlistModal" class="modal">
+    <div class="modal-content small-modal-content">
+        <span class="close-button" id="closeStandaloneAddProductToWishlistModalBtn">&times;</span>
+        <div class="modal-body">
+            <h2>Añadir a Wishlist</h2>
+            <!-- Imagen del producto, precargada por JS -->
+            <img id="standaloneWishlistProductImage" src="images/product-placeholder.jpg" alt="Producto" class="modal-product-img">
+            <!-- Nombre del producto, precargado por JS -->
+            <h4 id="standaloneWishlistProductName">Nombre Producto Ejemplo</h4>
+            <!-- Precio del producto, precargado por JS -->
+            <p id="standaloneWishlistProductPrice">$ 99.000 COP</p>
+
+            <form id="standaloneAddProductToWishlistForm">
+                <!-- Inputs ocultos para enviar los datos reales del producto al PHP -->
+                <input type="hidden" id="standaloneWishlistProductId" name="productId" value="">
+                <input type="hidden" id="standaloneWishlistProductActualPrice" name="productPrice" value="">
+                <input type="hidden" id="standaloneWishlistProductActualImage" name="productImage" value="">
+
+                <label for="standaloneBoardSelect">Selecciona un Tablero:</label>
+                <select id="standaloneBoardSelect" name="boardId" required>
+                    <!-- Las opciones se cargarán dinámicamente con JavaScript (populateBoardSelect) -->
+                    <option value="">Cargando tableros...</option>
+                </select>
+
+                <label for="standaloneItemNotes">Notas (opcional):</label>
+                <textarea id="standaloneItemNotes" name="notes" rows="3" maxlength="255" placeholder="Ej: 'Para mi cumpleaños', 'Regalo para X'"></textarea>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancelStandaloneAddToWishlistBtn" class="btn btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Añadir al Tablero</button>
+                </div>
+            </form>
+            <p class="create-board-prompt">¿No encuentras un tablero? <a href="#" id="openStandaloneCreateBoardLink">Crea uno nuevo aquí</a>.</p>
+        </div>
+    </div>
+</div>
